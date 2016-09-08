@@ -1,0 +1,36 @@
+"xbacklight -dec 10%"
+    m:0x0 + c:72
+    F6
+    
+"xbacklight -inc 10%"
+    m:0x0 + c:73
+    F7
+
+"xbacklight -dec 1%"
+    Shift+F6
+    
+"xbacklight -inc 1%"
+    Shift+F7
+
+"amixer -D pulse set Master toggle && pkill -RTMIN+1 i3blocks"
+    m:0x0 + c:74
+    F8
+
+"amixer -D pulse set Master 10%- unmute && pkill -RTMIN+1 i3blocks"
+    m:0x0 + c:75
+    F9
+
+"amixer -D pulse set Master 10%+ unmute && pkill -RTMIN+1 i3blocks"
+    m:0x0 + c:76
+    F10
+
+"xvkbd -xsendevent -text '\[Delete]'"
+Alt + BackSpace
+"xvkbd -xsendevent -text '\[End]'"
+Alt + Right
+"xvkbd -xsendevent -text '\[Home]'"
+Alt + Left
+"xvkbd -xsendevent -text '\[Page_Down]'"
+Alt + Down
+"xvkbd -xsendevent -text '\[Page_Up]'"
+Alt + Up
