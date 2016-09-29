@@ -176,3 +176,5 @@ bindsym $mod+shift+e mode "$mode_system"
 bindsym $mod+shift+a exec --no-startup-id pcmanfm
 bindsym $mod+shift+s exec --no-startup-id firefox 
 bindsym $mod+shift+w exec --no-startup-id lxterminal -e "sudo wifi-menu"
+bindsym $mod+shift+z exec --no-startup-id vlc
+bindsym $mod+shift+x exec --no-startup-id google-chrome-stable
