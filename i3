@@ -178,3 +178,7 @@ bindsym $mod+shift+s exec --no-startup-id firefox
 bindsym $mod+shift+w exec --no-startup-id lxterminal -e "sudo wifi-menu"
 bindsym $mod+shift+z exec --no-startup-id vlc
 bindsym $mod+shift+x exec --no-startup-id google-chrome-stable
+
+new_window pixel 1
+new_float pixel 1
+hide_edge_borders vertical
