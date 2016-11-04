@@ -1,4 +1,4 @@
-compton --config /home/dario/.config/compton.conf -b &
+compton --config ~/.config/compton.conf -b &
 xbindkeys &
 setxkbmap se &
 nitrogen --restore &
