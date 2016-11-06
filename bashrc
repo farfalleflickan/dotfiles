@@ -1,8 +1,8 @@
-alias pU="pacmatic -Syu"
-alias pR="pacmatic -Rns"
-alias pO="pacmatic -Rns $(pacman -Qtdq)"
-alias pS="pacmatic -S"
-alias pSs="pacmatic -Ss"
+alias pU="sudo pacmatic -Syu"
+alias pR="sudo pacmatic -Rns"
+alias pO="sudo pacmatic -Rns $(pacman -Qtdq)"
+alias pS="sudo pacmatic -S"
+alias pSs="sudo pacmatic -Ss"
 alias K="sudo killall"
 alias fuck='sudo $(history -p \!\!)'
 alias cls="clear"
