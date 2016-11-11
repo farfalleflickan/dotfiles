@@ -4,7 +4,7 @@ alias pO="pacaur -Rns $(pacman -Qtdq)"
 alias pS="pacaur -S"
 alias pSs="pacaur -Ss"
 alias K="sudo killall"
-alias fuck='sudo $(history -p \!\!)'
+alias fuck='sudo $(fc -ln -1)'
 alias cls="clear"
 alias snano="sudo nano"
 
