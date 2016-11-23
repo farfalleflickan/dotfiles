@@ -94,3 +94,4 @@ alias K="sudo killall"
 alias fuck='sudo $(fc -ln -1)' 
 alias cls="clear"
 alias snano="sudo nano"
+alias ls="ls --color"
