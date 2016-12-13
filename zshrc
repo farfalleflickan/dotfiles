@@ -93,5 +93,7 @@ alias K="sudo killall"
 alias cls="clear"
 alias snano="sudo nano"
 alias ls="ls --color"
+eval "$(thefuck --alias)"
+
 bindkey "\033[1~" beginning-of-line
 bindkey "\033[4~" end-of-line
