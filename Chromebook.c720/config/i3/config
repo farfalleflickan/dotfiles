@@ -181,3 +181,5 @@ bindsym $mod+shift+z exec --no-startup-id vlc
 new_window pixel 1
 new_float pixel 1
 hide_edge_borders vertical
+
+exec --no-startup-id sleep 3 && xfce4-power-manager
