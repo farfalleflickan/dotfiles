@@ -1,2 +1,0 @@
-rofi.run-command: {terminal} -e zsh -c '{cmd}'
-rofi.terminal: lxterminal
