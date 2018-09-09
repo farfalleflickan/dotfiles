@@ -41,7 +41,8 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --no-generic --use-xdg-de
+#bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --no-generic --use-xdg-de
+bindsym $mod+d exec --no-startup-id "rofi -modi window,drun,run,ssh -show drun -sidebar-mode -theme Pop-Dark -font 'hack 10'"
 
 # change focus
 bindsym $mod+j focus left
@@ -175,11 +176,13 @@ mode "$mode_system" {
 bindsym $mod+shift+e mode "$mode_system"
 bindsym $mod+shift+a exec --no-startup-id pcmanfm
 bindsym $mod+shift+s exec --no-startup-id firefox 
+bindsym $mod+shift+d exec --no-startup-id thunderbird
 bindsym $mod+shift+w exec --no-startup-id lxterminal -e sudo wifi-menu
 bindsym $mod+shift+z exec --no-startup-id vlc
 
-new_window pixel 1
-new_float pixel 1
-hide_edge_borders vertical
+hide_edge_borders both
+default_border pixel 2
+default_floating_border pixel 2
 
-exec --no-startup-id sleep 3 && xfce4-power-manager
+exec --no-startup-id xfce4-power-manager &
+exec --no-startup-id redshift-gtk &
