@@ -1,0 +1,15 @@
+# PLACE IN ~/.local/share/file-manager/actions/mountiso.desktop
+
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Type=Action
+Name[en]=Mount
+Icon=application-x-cd-image
+Profiles=profile-zero;
+
+[X-Action-Profile profile-zero]
+MimeTypes=application/x-cd-image;
+Exec=udisksctl loop-setup -f %f
+Name[en]=Default profile
+SelectionCount==1
