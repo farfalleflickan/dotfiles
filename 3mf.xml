@@ -1,0 +1,9 @@
+# PLACE IN /usr/share/mime/packages
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+	<mime-type type="application/x-3mf">
+		<comment>3mf 3D File</comment>
+		<glob pattern="*.3mf"/>
+		<icon name="prusa-slicer"/>
+	</mime-type>
+</mime-info>
