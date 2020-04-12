@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name = Extract to archive folder
+Tooltip = Extract to new folder with archive name
+Icon = engrampa
+Profiles = all_files;
+
+[X-Action-Profile all_files]
+Name = Extract to archive folder
+MimeTypes=application/x-tar;application/x-compressed-tar;application/x-bzip-compressed-tar;application/x-tarz;application/x-xz-compressed-tar;application/x-lzma-compressed-tar;application/x-deb;application/x-cd-image;application/x-bcpio;application/x-cpio;application/x-cpio-compressed;application/x-sv4cpio;application/x-sv4crc;application/x-rpm;application/x-source-rpm;application/vnd.ms-cab-compressed;application/x-servicepack;application/x-rar;application/x-7z-compressed;application/x-java-archive;application/zip;application/x-compress;application/x-gzip;application/x-bzip;application/x-bzip2;application/x-lzma;application/x-xz;application/lha;application/x-lha;application/maclha;
+SelectionCount = 1
+Exec = engrampa -h %F
