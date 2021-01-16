@@ -1,0 +1,50 @@
+#!/bin/bash
+path=.
+#reg='.*\.\(mp4\|mkv\|avi\|divx\)'
+reg='.*\.\(mkv\|avi\|divx\)'
+preset='-preset slow -crf 23'
+
+find $path -iregex $reg -print0 | while IFS= read -r -d '' fullPath; do
+    audioCodec=$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 ${fullPath})
+    videoCodec=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 ${fullPath})
+	filename=$(basename -- "$fullPath")
+	extension="${filename##*.}"
+	filename="${filename%.*}"
+	currTime=$(date +"%T %d-%m-%Y");
+	
+	status=0;
+	if [[ "$audioCodec" != *"aac"* ]]; then
+			status=1;
+	fi
+	if [[ "$videoCodec" != *"h264"* ]]; then
+			status=$((status+10));
+	fi
+	
+	if [[ "$extension" != *"mp4"* ]]; then
+			status=$((status+100));
+	fi
+	
+	case $status in
+			0)
+				;;
+			1 | 101)
+				echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\tstatus: $status\nWorking on: $fullPath" | tee -a script.log;
+				ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec copy -acodec aac ${preset} -movflags faststart ${fullPath%$extension}mp4 < /dev/null;
+				;;
+			10 | 110)
+				echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\tstatus: $status\nWorking on: $fullPath" | tee -a script.log;
+				ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec h264 -acodec copy ${preset} -movflags faststart ${fullPath%$extension}mp4 < /dev/null;
+				;;
+			11 | 111)
+				echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\tstatus: $status\nWorking on: $fullPath" | tee -a script.log;
+				ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec h264 -acodec aac ${preset} -movflags faststart ${fullPath%$extension}mp4 < /dev/null;
+				;;
+			100)
+				echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\tstatus: $status\nWorking on: $fullPath" | tee -a script.log;
+				ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec copy -acodec copy ${preset} -movflags faststart ${fullPath%$extension}mp4 < /dev/null;
+				;;
+			*)
+				echo -e "ERROR!!!\n$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\tstatus: $status\nfilePath: $fullPath" | tee -a errors.log;
+				;;
+	esac
+done

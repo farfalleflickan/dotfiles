@@ -1,0 +1,6 @@
+[submodule "home/home/_oh-my-zsh"]
+	path = home/home/_oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh
+[submodule "home/_oh-my-zsh"]
+	path = home/_oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh

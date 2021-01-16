@@ -1,0 +1,8 @@
+# removes gibberish before extension
+perl-rename -n 's/(?<=S[0-9]{2}E[0-9]{2})(..+(?=.mp4|.srt|.mkv))//g' *
+
+# run command in every dir
+find . -maxdepth 1 -type d \( ! -name . \) -exec bash -c "cd '{}' && INSERT HERE" \;
+
+# rename all in folder & append
+for file in *.png; do ext="${file##*.}"; filename="${file%.*}"; cp "${file}" test/"${filename}"_original."${ext}" ; done

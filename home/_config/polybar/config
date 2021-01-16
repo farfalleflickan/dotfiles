@@ -28,13 +28,14 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/barMain]
-monitor = ${env:MONITOR:DVI-D-0}
+;monitor = ${env:MONITOR:DVI-D-0}
+monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 20
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0
-fixed-center = false
+fixed-center = true
 bottom=true
 locale=sv_SE.UTF-8
 background = ${colors.background}
@@ -64,7 +65,8 @@ cursor-scroll = ns-resize
 tray-maxsize = 14
 
 [bar/barLeft]
-monitor = ${env:MONITOR:HDMI-A-0}
+;monitor = ${env:MONITOR:HDMI-A-0}
+monitor = ${env:MONITOR:HDMI-2}
 width = 100%
 height = 20
 ;offset-x = 1%
@@ -113,7 +115,7 @@ module-margin-left = 0
 module-margin-right = 1
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-2 = Siji:pixelsize=10;1
 modules-left = i3
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -150,11 +152,11 @@ label-visible-padding = 3
 label-urgent = %index%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
-label-urgent-padding = 0
+label-urgent-padding = 3
 
 [module/mpd]
 type = internal/mpd
-format-online =<icon-prev> <icon-stop> <toggle> <icon-next> %{A1:lxterminal -e "ncmpcpp":} <label-song> <label-time> %{A} 
+format-online =<icon-prev> <icon-stop> <toggle> <icon-next> %{A1:lxterminal -e "ncmpcpp" &:} <label-song> <label-time> %{A} 
 icon-prev = 
 icon-stop = 
 icon-play = 
@@ -167,38 +169,23 @@ label-time = %elapsed% / %total%
 [module/cpu]
 type = internal/cpu
 interval = 2
-format = %{A1:lxterminal -e "htop":}<label> <ramp-load> %{A}
+format = %{A1:lxterminal -e "htop" &:}<label> %{A}
 label=  %percentage%%
-ramp-load-0 = ▁
-ramp-load-1 = ▂
-ramp-load-2 = ▃
-ramp-load-3 = ▄
-ramp-load-4 = ▅
-ramp-load-5 = ▆
-ramp-load-6 = ▇
-ramp-load-7 = █
 
 [module/date]
 type = internal/date
 interval = 5
-date=  
-date-alt=  %Y-%m-%d
-time=%H:%M
-time-alt=%H:%M
-label=%date% %time%
+date=%d-%m-%Y
+date-alt= 
+time= %H:%M
+time-alt= %H:%M
+label=%time% %date% 
 
 [module/memory]
 type = internal/memory
 interval = 3
 format = <label>
 label =  %gb_used%/%gb_total%
-bar-used-indicator =
-bar-used-width = 10
-bar-used-foreground-0 = #55aa55
-bar-used-foreground-1 = #557755
-bar-used-foreground-2 = #f5a70a
-bar-used-foreground-3 = #ff5555
-bar-used-empty-foreground = #444444
 
 [module/weather_ico]
 type = custom/script
@@ -209,7 +196,7 @@ label-font = 7
 [module/weather_text]
 type = custom/script
 exec = ~/.config/polybar/weather_script_text_only.sh
-interval = 600
+interval = 900
 label-font = 0
 
 [settings]

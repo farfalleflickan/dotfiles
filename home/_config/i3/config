@@ -30,7 +30,10 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id kitty
+#bindsym $mod+Return exec --no-startup-id alacritty
+#bindsym $mod+Return exec --no-startup-id lxterminal
+#bindsym $mod+Return exec --no-startup-id st
 
 # kill focused window
 #bindsym $mod+Shift+q kill
@@ -44,7 +47,7 @@ bindsym $mod+Shift+q exec --no-startup-id ~/.config/i3/SteamOrKill.sh
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id "rofi -modi window,drun,run -show drun -sidebar-mode"
+bindsym $mod+d exec --no-startup-id "rofi -modi window,drun,run -show drun -terminal kitty -sidebar-mode -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
 
 # change focus
 bindsym $mod+j focus left
@@ -109,15 +112,60 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-workspace $ws1 output DVI-D-0
-workspace $ws2 output DVI-D-0
-workspace $ws3 output DVI-D-0
-workspace $ws4 output DVI-D-1
-workspace $ws5 output DVI-D-1
-workspace $ws6 output DVI-D-1
-workspace $ws7 output HDMI-A-0
-workspace $ws8 output HDMI-A-0
-workspace $ws9 output HDMI-A-0
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
+
+set $ws21 "21"
+set $ws22 "22"
+set $ws23 "23"
+set $ws24 "24"
+set $ws25 "25"
+set $ws26 "26"
+set $ws27 "27"
+set $ws28 "28"
+set $ws29 "29"
+set $ws30 "30"
+
+workspace $ws1 output HDMI-1
+workspace $ws2 output HDMI-1
+workspace $ws3 output HDMI-1
+workspace $ws4 output HDMI-1
+workspace $ws5 output HDMI-1
+workspace $ws6 output HDMI-1
+workspace $ws7 output HDMI-1
+workspace $ws8 output HDMI-1
+workspace $ws9 output HDMI-1
+workspace $ws10 output HDMI-1
+
+workspace $ws11 output HDMI-2
+workspace $ws12 output HDMI-2
+workspace $ws13 output HDMI-2
+workspace $ws14 output HDMI-2
+workspace $ws15 output HDMI-2
+workspace $ws16 output HDMI-2
+workspace $ws17 output HDMI-2
+workspace $ws18 output HDMI-2
+workspace $ws19 output HDMI-2
+workspace $ws20 output HDMI-2
+#
+#workspace $ws21 output DVI-D-1
+#workspace $ws22 output DVI-D-1
+#workspace $ws23 output DVI-D-1
+#workspace $ws24 output DVI-D-1
+#workspace $ws25 output DVI-D-1
+#workspace $ws26 output DVI-D-1
+#workspace $ws27 output DVI-D-1
+#workspace $ws28 output DVI-D-1
+#workspace $ws29 output DVI-D-1
+#workspace $ws30 output DVI-D-1
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -131,6 +179,29 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+bindsym $mod+Control+1 workspace $ws11
+bindsym $mod+Control+2 workspace $ws12
+bindsym $mod+Control+3 workspace $ws13
+bindsym $mod+Control+4 workspace $ws14
+bindsym $mod+Control+5 workspace $ws15
+bindsym $mod+Control+6 workspace $ws16
+bindsym $mod+Control+7 workspace $ws17
+bindsym $mod+Control+8 workspace $ws18
+bindsym $mod+Control+9 workspace $ws19
+bindsym $mod+Control+0 workspace $ws20
+
+bindsym $mod+mod1+1 workspace $ws21
+bindsym $mod+mod1+2 workspace $ws22
+bindsym $mod+mod1+3 workspace $ws23
+bindsym $mod+mod1+4 workspace $ws24
+bindsym $mod+mod1+5 workspace $ws25
+bindsym $mod+mod1+6 workspace $ws26
+bindsym $mod+mod1+7 workspace $ws27
+bindsym $mod+mod1+8 workspace $ws28
+bindsym $mod+mod1+9 workspace $ws29
+bindsym $mod+mod1+0 workspace $ws30
+
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -142,6 +213,28 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Control+Shift+1 move container to workspace $ws11
+bindsym $mod+Control+Shift+2 move container to workspace $ws12
+bindsym $mod+Control+Shift+3 move container to workspace $ws13
+bindsym $mod+Control+Shift+4 move container to workspace $ws14
+bindsym $mod+Control+Shift+5 move container to workspace $ws15
+bindsym $mod+Control+Shift+6 move container to workspace $ws16
+bindsym $mod+Control+Shift+7 move container to workspace $ws17
+bindsym $mod+Control+Shift+8 move container to workspace $ws18
+bindsym $mod+Control+Shift+9 move container to workspace $ws19
+bindsym $mod+Control+Shift+0 move container to workspace $ws20
+
+bindsym $mod+mod1+Shift+1 move container to workspace $ws21
+bindsym $mod+mod1+Shift+2 move container to workspace $ws22
+bindsym $mod+mod1+Shift+3 move container to workspace $ws23
+bindsym $mod+mod1+Shift+4 move container to workspace $ws24
+bindsym $mod+mod1+Shift+5 move container to workspace $ws25
+bindsym $mod+mod1+Shift+6 move container to workspace $ws26
+bindsym $mod+mod1+Shift+7 move container to workspace $ws27
+bindsym $mod+mod1+Shift+8 move container to workspace $ws28
+bindsym $mod+mod1+Shift+9 move container to workspace $ws29
+bindsym $mod+mod1+Shift+0 move container to workspace $ws30
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -207,9 +300,10 @@ mode "$mode_system" {
 }
 bindsym $mod+shift+e mode "$mode_system"
 bindsym $mod+shift+a exec --no-startup-id pcmanfm
-bindsym $mod+shift+s exec --no-startup-id firefox 
-bindsym $mod+shift+d exec --no-startup-id ~/.config/i3/launchThunderbird.sh &
-bindsym $mod+shift+z exec --no-startup-id vlc
+bindsym $mod+shift+s exec firefox 
+bindsym $mod+shift+d exec  ~/.config/i3/launchThunderbird.sh &
+bindsym --release $mod+shift+x exec xkill
+bindsym $mod+shift+z exec vlc
 
 #hide_edge_borders both
 default_border pixel 2
@@ -220,15 +314,27 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 # Make the currently focused window a scratchpad
-bindsym $mod+minus move scratchpad
+bindsym $mod+Shift+minus move scratchpad
 
 # Show the first scratchpad window
-bindsym $mod+plus scratchpad show
+bindsym $mod+minus scratchpad show
 
-exec --no-startup-id xrandr --output DVI-D-0 --primary &
+#exec_always --no-startup-id xrandr --output DVI-D-0 --primary &
+exec_always --no-startup-id xrandr --output HDMI-1 --primary &
+exec_always --no-startup-id picom --config ~/.config/picom.conf &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
+#exec_always --no-startup-id xfce4-notes &
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent &
 exec --no-startup-id redshift-gtk &
 exec --no-startup-id /usr/bin/dropbox &
-exec --no-startup-id mpd &
+#exec --no-startup-id /usr/bin/radeon-profile &
+#exec --no-startup-id mpd &
+exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+exec --no-startup-id parcellite -n &
+exec --no-startup-id nm-applet &
+
+for_window [class="Xfce4-notifyd" instance="xfce4-notifyd"] floating enable
+for_window [class="Xfce4-notifyd" instance="xfce4-notifyd"] border none
+for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] floating enable
+for_window [class="java-lang-Thread" instance="sun-awt-X11-XFramePeer" title="Starting NetBeans IDE"] border none
