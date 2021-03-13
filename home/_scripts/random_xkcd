@@ -1,0 +1,9 @@
+#!/bin/bash
+
+url="`curl -sL https://c.xkcd.com/random/comic/ | grep -om1 'imgs.xkcd.com/comics/[^.]*\.[a-z]*'`"
+
+img="$HOME/.wallpapers/${url##*/}"
+img="${1:-$img}"
+
+curl -so "$img" --fail "$url" 
+nitrogen --set-centered --random --save ~/.wallpapers
