@@ -24,13 +24,19 @@
     m:0x0 + c:76
     F10
 
-"xvkbd -xsendevent -text '\[Delete]'"
-Alt + BackSpace
-"xvkbd -xsendevent -text '\[End]'"
-Alt + Right
-"xvkbd -xsendevent -text '\[Home]'"
-Alt + Left
-"xvkbd -xsendevent -text '\[Page_Down]'"
-Alt + Down
-"xvkbd -xsendevent -text '\[Page_Up]'"
-Alt + Up
+
+
+"xdotool keyup shift+BackSpace; xdotool key Delete; xdotool keydown shift" 
+Shift + BackSpace
+
+"xdotool keyup shift+Right; xdotool key End; xdotool keydown shift" 
+Shift + Right
+
+"xdotool keyup shift+Left; xdotool key Home; xdotool keydown shift" 
+Shift + Left
+
+"xdotool keyup shift+Down; xdotool key Page_Down; xdotool keydown shift" 
+Shift + Down
+
+"xdotool keyup shift+Up; xdotool key Page_Up; xdotool keydown shift" 
+Shift + Up
