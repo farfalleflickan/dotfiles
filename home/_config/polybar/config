@@ -16,31 +16,21 @@
 ;
 ;==========================================================
 
-[colors]
-;background = ${xrdb:color0:#222}
-background = #222
+[bar]
+background = #711c91
 background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
+foreground = #0abdc6
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
-
-[bar/barMain]
-;monitor = ${env:MONITOR:DVI-D-0}
-monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 20
-;offset-x = 1%
-;offset-y = 1%
 radius = 0
-fixed-center = true
+fixed-center = false
 bottom=true
 locale=sv_SE.UTF-8
-background = ${colors.background}
-foreground = ${colors.foreground}
-line-size = 1
+line-size = 3
 line-color = #f00
 border-size = 0
 border-color = #00000000
@@ -48,6 +38,15 @@ padding-left = 0
 padding-right = 0
 module-margin-left = 0
 module-margin-right = 1
+cursor-click = pointer
+cursor-scroll = ns-resize
+font-0 = fixed:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
+
+[bar/barMain]
+inherit = bar
+monitor = ${env:MONITOR:DP-3}
 font-0 = fixed:pixelsize=10;2
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;2
 font-2 = siji:pixelsize=10;2
@@ -55,70 +54,23 @@ font-3 = Font Awesome 5 Free:pixelsize=10;2
 font-4 = Font Awesome 5 Free Solid:pixelsize=10;2
 font-5 = Font Awesome 5 Brands:pixelsize=10;2
 font-6 = Weather Icons:size=12;4
+fixed-center = true
 modules-left = i3 xwindow
 modules-center = mpd
 modules-right = weather_ico weather_text cpu memory date
 tray-position = right
 tray-padding = 1
-cursor-click = pointer
-cursor-scroll = ns-resize
 tray-maxsize = 14
 
 [bar/barLeft]
-;monitor = ${env:MONITOR:HDMI-A-0}
-monitor = ${env:MONITOR:HDMI-2}
-width = 100%
-height = 20
-;offset-x = 1%
-;offset-y = 1%
-radius = 0
-fixed-center = false
-bottom=true
-locale=sv_SE.UTF-8
-background = ${colors.background}
-foreground = ${colors.foreground}
-line-size = 1
-line-color = #f00
-border-size = 0
-border-color = #00000000
-padding-left = 0
-padding-right = 0
-module-margin-left = 0
-module-margin-right = 1
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+inherit = bar
+monitor = ${env:MONITOR:HDMI-0}
 modules-left = i3
-cursor-click = pointer
-cursor-scroll = ns-resize
-
 
 [bar/barRight]
-monitor = ${env:MONITOR:DVI-D-1}
-width = 100%
-height = 20
-;offset-x = 1%
-;offset-y = 1%
-radius = 0
-fixed-center = false
-bottom=true
-locale=sv_SE.UTF-8
-background = ${colors.background}
-foreground = ${colors.foreground}
-line-size = 1
-line-color = #f00
-border-size = 0
-border-color = #00000000
-padding-left = 0
-padding-right = 0
-module-margin-left = 0
-module-margin-right = 1
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = Siji:pixelsize=10;1
+inherit = bar
+monitor = ${env:MONITOR:DP-1}
 modules-left = i3
-cursor-click = pointer
-cursor-scroll = ns-resize
 
 
 [module/xwindow]
@@ -140,18 +92,18 @@ label-mode = %mode%
 label-mode-padding = 2
 label-mode-background = #bd2c40
 label-focused = %index%
-label-focused-foreground = #ffffff
-label-focused-background = #3f3f3f
-label-focused-underline = #fba922
+label-focused-foreground = #28eaf4
+label-focused-background = #a328d1
+label-focused-underline = #0abdc6
 label-focused-padding = 3
 label-unfocused = %index%
 label-unfocused-padding = 3
 label-visible = %index%
-label-visible-underline = #555555
+label-visible-underline = #711c91
 label-visible-padding = 3
 label-urgent = %index%
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
+label-urgent-foreground = #28eaf4
+label-urgent-background = #BD2C40
 label-urgent-padding = 3
 
 [module/mpd]
@@ -174,7 +126,7 @@ label=  %percentage%%
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 30
 date=%d-%m-%Y
 date-alt= 
 time= %H:%M
