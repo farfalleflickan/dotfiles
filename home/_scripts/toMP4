@@ -11,40 +11,22 @@ find $path -iregex $reg -print0 | while IFS= read -r -d '' fullPath; do
 	extension="${filename##*.}"
 	filename="${filename%.*}"
 	currTime=$(date +"%T %d-%m-%Y");
-	
-	status=0;
+    fileOut=./${filename}.mp4
+	acodec_out=aac;
+    vcodec_out=libx264;
+
+    status=0;
 	if [[ "$audioCodec" != *"aac"* ]]; then
-			status=1;
+        acodec_out=aac;
+    else
+        acodec_out=copy;
 	fi
-	if [[ "$videoCodec" != *"h264"* ]]; then
-			status=$((status+10));
+	if [[ "$videoCodec" != *"264"* ]]; then
+        vcodec_out=libx264;
+    else
+        vcodec_out=copy;
 	fi
 	
-	if [[ "$extension" != *"mp4"* ]]; then
-			status=$((status+100));
-	fi
-	
-	case $status in
-			0)
-				;;
-			1 | 101)
-				echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\tstatus: $status\nWorking on: $fullPath" | tee -a script.log;
-				ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec copy -acodec aac ${preset} -movflags faststart ${fullPath%$extension}mp4 < /dev/null;
-				;;
-			10 | 110)
-				echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\tstatus: $status\nWorking on: $fullPath" | tee -a script.log;
-				ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec h264 -acodec copy ${preset} -movflags faststart ${fullPath%$extension}mp4 < /dev/null;
-				;;
-			11 | 111)
-				echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\tstatus: $status\nWorking on: $fullPath" | tee -a script.log;
-				ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec h264 -acodec aac ${preset} -movflags faststart ${fullPath%$extension}mp4 < /dev/null;
-				;;
-			100)
-				echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\tstatus: $status\nWorking on: $fullPath" | tee -a script.log;
-				ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec copy -acodec copy ${preset} -movflags faststart ${fullPath%$extension}mp4 < /dev/null;
-				;;
-			*)
-				echo -e "ERROR!!!\n$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\tstatus: $status\nfilePath: $fullPath" | tee -a errors.log;
-				;;
-	esac
+    echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\nWorking on: $fullPath" | tee -a script.log;
+    ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec ${vcodec_out} -acodec ${acodec_out} ${preset} -movflags faststart -ac 2 ${fileOut} < /dev/null;
 done
