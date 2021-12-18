@@ -5,28 +5,29 @@ reg='.*\.\(mkv\|avi\|divx\)'
 preset='-preset slow -crf 23'
 
 find $path -iregex $reg -print0 | while IFS= read -r -d '' fullPath; do
-    audioCodec=$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 ${fullPath})
-    videoCodec=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 ${fullPath})
+	audioCodec=$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 ${fullPath})
+	videoCodec=$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 ${fullPath})
 	filename=$(basename -- "$fullPath")
+	filedir=$(dirname -- "$fullPath")
 	extension="${filename##*.}"
 	filename="${filename%.*}"
 	currTime=$(date +"%T %d-%m-%Y");
-    fileOut=./${filename}.mp4
+	fileOut=${filedir}/${filename}.mp4
 	acodec_out=aac;
-    vcodec_out=libx264;
+	vcodec_out=libx264;
 
-    status=0;
+	status=0;
 	if [[ "$audioCodec" != *"aac"* ]]; then
-        acodec_out=aac;
-    else
-        acodec_out=copy;
+		acodec_out=aac;
+	else
+		acodec_out=copy;
 	fi
 	if [[ "$videoCodec" != *"264"* ]]; then
-        vcodec_out=libx264;
-    else
-        vcodec_out=copy;
+		vcodec_out=libx264;
+	else
+		vcodec_out=copy;
 	fi
-	
-    echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\nWorking on: $fullPath" | tee -a script.log;
-    ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec ${vcodec_out} -acodec ${acodec_out} ${preset} -movflags faststart -ac 2 ${fileOut} < /dev/null;
+
+	echo -e "$currTime\nvideoCodec: $videoCodec\taudioCodec: $audioCodec\nWorking on: $fullPath" | tee -a script.log;
+	ffmpeg -v quiet -stats -i ${fullPath} -y -vcodec ${vcodec_out} -acodec ${acodec_out} ${preset} -movflags faststart -ac 2 ${fileOut} < /dev/null;
 done
