@@ -1,5 +1,8 @@
 # removes gibberish before extension
-perl-rename -n 's/(?<=S[0-9]{2}E[0-9]{2})(..+(?=.mp4|.srt|.mkv))//g' *
+perl-rename -n 's/(?<=[sS][0-9]{2}[eE][0-9]{2})(..+(?=.mp4|.srt|.mkv))//g' *
+# example:
+# Show.s01e01.WEBRip.x264-ION10.mp4 -> Show.s01e01.mp4
+# Show.S01E01.WEBRip.x264-ION10.mp4 -> Show.S01E01.mp4
 
 # run command in every dir
 find . -maxdepth 1 -type d \( ! -name . \) -exec bash -c "cd '{}' && INSERT HERE" \;
