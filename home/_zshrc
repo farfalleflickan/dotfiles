@@ -1,7 +1,7 @@
 ZSH_DISABLE_COMPFIX=true
 
 powerline-daemon -q
-. /usr/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python3.11/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -103,27 +103,31 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export PATH="$PATH:/home/daria/.openscad/libraries/NopSCADlib/scripts"
 export WINEDLLOVERRIDES=winemenubuilder.exe=d
+# Created by `userpath` on 2021-02-16 11:43:03
+export PATH="$PATH:/home/daria/.local/bin"
 
-alias pU="paru -Syu"
-alias pS="paru -S"
-alias pSs="paru -Ss"
+alias pU="paru -Syu --fm vim"
+alias pS="paru -S --fm vim"
+alias pSs="paru -Ss --fm vim"
 alias pR="sudo pacman -Rns"
 alias pO='sudo pacman -Rns $(pacman -Qtdq)'
 alias K="sudo killall"
 alias fuck='sudo $(fc -nl -1)'
 alias cls="clear"
 alias snano="sudo nano"
-alias ls="exa -l"
+alias ls="eza -l --icons"
 alias pMesa="pS mesa libdrm lib32-mesa lib32-libdrm xf86-video-ati opencl-mesa lib32-mesa-vdpau lib32-llvm-libs llvm-libs libclc clang compiler-rt lib32-vulkan-intel lib32-vulkan-radeon vulkan-intel vulkan-mesa-layer vulkan-radeon amdvlk lib32-amdvlk lldb"
 
+#alias ssh="kitty +kitten ssh"
 alias rm=trash
 
 function kittySSH(){
     echo "infocmp xterm-kitty | ssh myserver tic -x -o \~/.terminfo /dev/stdin"; 
 }
 
-# to mount .img
+# mount .img
 function los() {
 img="$1"
 dev="$(sudo losetup --show -f -P "$img")"
@@ -138,7 +142,7 @@ for part in "$dev"?*; do
     sudo mount "$part" "$dst"
 done
 }
-# to unmount .img
+#unmount .img
 function losd() {
 dev="/dev/loop$1"
 for part in "$dev"?*; do
@@ -153,6 +157,10 @@ sudo losetup -d "$dev"
 
 bindkey "\033[1~" beginning-of-line
 bindkey "\033[4~" end-of-line
+bindkey -s "\e[24~" ""
 
 eval $( dircolors -b $HOME/.dircolors )
 
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. "$HOME/.cargo/env"

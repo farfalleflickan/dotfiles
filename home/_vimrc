@@ -25,11 +25,11 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'valloric/youcompleteme'
+Plugin 'chrisbra/colorizer'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,6 +58,13 @@ set shiftwidth=4
 set expandtab
 nmap <C-PageUp> :bp<CR>
 nmap <C-PageDown> :bn<CR>
+
+if &term =~ 'kitty'
+    " <PageUp>
+    let &t_kP = "\<ESC>[5;*~"
+    " <PageDown>
+    let &t_kN = "\<ESC>[6;*~"
+endif
 
 cmap w!! w !sudo tee > /dev/null %
 
